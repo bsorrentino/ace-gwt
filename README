@@ -1,0 +1,78 @@
+
+Use ACE Editor from GWT
+
+
+1. Include dependency in your project
+
+    <dependency>
+    	<groupId>ace</groupId>
+    	<artifactId>ace-gwt-editor</artifactId>
+    	<version>1.0-SNAPSHOT</version>
+    	<type>jar</type>
+    	<scope>compile</scope>
+    </dependency>
+
+2. Inherit module in GWT configuration file (*.gwt.xml)
+
+      <inherits name='ace.Editor'/>
+
+3. Copy ACE didtribution (src forlder) in your webapp 
+
+4. Include JS and add the RootPanel div in your Application.html
+
+  <head>
+    <!--                                           	-->
+    <!-- ACE   									   	-->
+    <!--											-->
+    <!--                                           	-->
+	<script src="src/ace.js" type="text/javascript" charset="utf-8"></script>
+	<script src="src/theme-twilight.js" type="text/javascript" charset="utf-8"></script>
+	<script src="src/mode-javascript.js" type="text/javascript" charset="utf-8"></script>
+  </head>
+
+  <body>
+
+    <!-- OPTIONAL: include this if you want history support -->
+    <iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1' style="position:absolute;width:0;height:0;border:0"></iframe>
+
+	<div id="toolbar"></div>
+	<div id="editor">
+	function main() { 
+		return 'hello world!';
+	}
+	</div>
+	
+  </body>
+</html>
+
+5. finally create JSEditor in your main class
+
+/**
+ * Entry point classes define <code>onModuleLoad()</code>.
+ */
+public class Application implements EntryPoint
+{
+
+  /**
+   * This is the entry point method.
+   */
+  public void onModuleLoad()
+  {
+	  
+	  
+	  final JSEditor editor = new JSEditor();
+
+	 editor.addHandler( new JSEditorHandler() {
+
+		public void onSave(JSEditorEvent<?> event) {
+			Window.alert( "save ");
+		}
+		 
+	 });
+	  
+	  editor.getProxy().setTheme("ace/theme/twilight");
+	 
+  }
+}
+
+
