@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+	
+
+<Context privileged="true" antiResourceLocking="false"	antiJARLocking="false" debug="1" reloadable="true" path="">
+
+	<Resource name="jdbc/MyDb"
+		maxActive="100" 
+		maxIdle="30" 
+		maxWait="10000"
+		username=""
+		password="" 
+		type="javax.sql.DataSource" 
+		auth="Container"
+		driverClassName="org.apache.derby.jdbc.EmbeddedDriver" 
+		url="jdbc:derby:MyDB;create=true" />
+
+<!-- 
+	<Resource name="jdbc/MyDb"
+		maxActive="100" 
+		maxIdle="30" 
+		maxWait="10000"
+		username="sa"
+		password="genesys" 
+		type="javax.sql.DataSource" 
+		auth="Container"
+		driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
+		url="jdbc:sqlserver://roswell:1433;databaseName=Audit;integratedSecurity=false;" />
+ -->
+ 
+ 
+<!--
+	<Resource name="jdbc/reportDB"
+		maxActive="100" 
+		maxIdle="30" 
+		maxWait="10000"
+		username="system"
+		password="bartolo" 
+		type="javax.sql.DataSource" 
+		auth="Container"
+		driverClassName="oracle.jdbc.driver.OracleDriver" 
+		url="jdbc:oracle:thin:@//192.168.176.131:1521/XE" />
+-->
+
+</Context>	
+
+
+
+
+

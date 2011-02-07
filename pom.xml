@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <!--  GWT-Maven archetype generated POM -->
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>ace</groupId>
+  <artifactId>ace-gwt-parent</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>ace gwt parent</name>
+
+<properties>
+
+  
+  <!-- convenience to define GWT version in one place -->
+  <gwt.version>2.1.1</gwt.version>
+  <commons.logging.version>1.1</commons.logging.version>
+
+</properties>
+
+
+<repositories>
+  <repository>
+      <id>java.net</id>
+      <url>http://download.java.net/maven/2/</url>
+  </repository>
+</repositories>
+
+<pluginRepositories>
+    <pluginRepository>
+            <id>codehaus-snapshots</id>
+            <name>codehaus-snapshots</name>
+            <url>http://snapshots.repository.codehaus.org/</url>
+            <releases>
+                    <enabled>false</enabled>
+            </releases>
+    </pluginRepository>
+    <pluginRepository>
+            <id>codehaus-releases</id>
+            <name>codehaus-releases</name>
+            <url>http://repository.codehaus.org/</url>
+            <snapshots>
+                    <enabled>false</enabled>
+            </snapshots>
+    </pluginRepository>
+</pluginRepositories>
+
+
+<dependencies>
+    <!--  GWT dependencies (from central repo) -->
+    <dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-servlet</artifactId>
+      <version>${gwt.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-user</artifactId>
+      <version>${gwt.version}</version>
+      <scope>provided</scope>    
+    </dependency>
+
+    <!-- test -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.4</version>
+      <scope>test</scope>
+    </dependency>
+</dependencies>
+
+<build>
+
+<plugins>
+
+  <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-compiler-plugin</artifactId>
+      <configuration>
+        <source>1.5</source>
+        <target>1.5</target>
+      </configuration>
+  </plugin>
+
+</plugins>
+
+
+<extensions>
+<extension>
+	<groupId>org.jvnet.wagon-svn</groupId>
+	<artifactId>wagon-svn</artifactId>
+	<version>1.8</version>	
+</extension>
+</extensions>  	
+
+</build>
+
+
+<distributionManagement>
+    <repository>
+        <id>google-project</id>
+        <url>svn:https://maven-gwt-archetypes.googlecode.com/svn/mavenrepo</url>
+    </repository>
+</distributionManagement>
+<modules>
+	<module>ace-gwt-webapp</module>
+    <module>ace-gwt-editor</module>
+  </modules>
+
+</project>

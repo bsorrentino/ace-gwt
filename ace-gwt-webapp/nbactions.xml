@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>CUSTOM-package</actionName>
+            <displayName>package</displayName>
+            <goals>
+                <goal>package</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-gwt-run</actionName>
+            <displayName>gwt-run</displayName>
+            <goals>
+                <goal>package</goal>
+                <goal>gwt:run</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>devmode</activatedProfile>
+            </activatedProfiles>
+        </action>
+        <action>
+            <actionName>CUSTOM-tomcat-run</actionName>
+            <displayName>tomcat-run</displayName>
+            <goals>
+                <goal>tomcat:run</goal>
+                
+                
+                
+            </goals>
+        </action>
+    </actions>

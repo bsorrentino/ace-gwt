@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <!--  GWT-Maven archetype generated POM -->
+	<parent>
+		<artifactId>ace-gwt-parent</artifactId>
+		<groupId>ace</groupId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+  <groupId>ace</groupId>
+  <artifactId>ace-gwt-webapp</artifactId>
+  <packaging>war</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>myfirst gwt app</name>
+
+<properties>
+
+  <webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
+  
+</properties>
+
+<profiles>
+    <profile>
+        <!--
+        ==========================================
+            ENABLE JETTY JMX AND CONNECTION POOL 
+        ==========================================
+        -->
+        <id>devmode</id>
+
+        <dependencies>
+            <dependency>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-naming</artifactId>
+                <version>6.1.11</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-plus</artifactId>
+                <version>6.1.11</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-dbcp</groupId>
+                <artifactId>commons-dbcp</artifactId>
+                <version>1.2.1</version>
+                
+                <exclusions>
+                	<exclusion><!--  need for UIBinder usage -->
+                		<artifactId>xerces</artifactId>
+                		<groupId>xerces</groupId>
+                	</exclusion>
+                </exclusions>
+            </dependency>
+        </dependencies>
+    </profile>
+</profiles>
+
+
+<dependencies>
+
+    <!--  Support of derbydb -->
+   <dependency>
+    	<groupId>org.apache.derby</groupId>
+    	<artifactId>derby</artifactId>
+    	<version>10.4.2.0</version>
+    	<scope>runtime</scope>
+    </dependency>
+
+    <dependency>
+        <groupId>commons-logging</groupId>
+        <artifactId>commons-logging</artifactId>
+        <version>${commons.logging.version}</version>
+        <exclusions>
+        <exclusion>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+        </exclusion>
+        </exclusions>
+    </dependency>
+<!-- remove comment to enable support of JSTL -->
+<!--
+    <dependency>
+    	<groupId>javax.servlet</groupId>
+    	<artifactId>jstl</artifactId>
+    	<version>1.1.2</version>
+    </dependency>
+
+    <dependency>
+    	<groupId>taglibs</groupId>
+    	<artifactId>standard</artifactId>
+    	<version>1.1.2</version>
+    </dependency>
+-->
+
+    <dependency>
+    	<groupId>ace</groupId>
+    	<artifactId>ace-gwt-editor</artifactId>
+    	<version>1.0-SNAPSHOT</version>
+    	<type>jar</type>
+    	<scope>compile</scope>
+    </dependency>
+</dependencies>
+
+<build>
+<outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
+
+<plugins>
+  <plugin>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>gwt-maven-plugin</artifactId>
+    <version>2.1.0-1</version>
+    
+     <executions>
+      <execution>
+        <goals>
+          <goal>compile</goal>
+          <goal>generateAsync</goal>
+          <!--goal>test</goal-->
+        </goals>
+      </execution>
+    </executions>
+    <configuration>
+    		<!--generateDirectory>${basedir}/src/main/java</generateDirectory-->
+    	
+            <disableCastChecking>true</disableCastChecking>
+            <disableClassMetadata>true</disableClassMetadata>
+            <runTarget>ace.Application/Application.html</runTarget>
+            <!--extraJvmArgs>-Xmx512m -XstartOnFirstThread -d32</extraJvmArgs-->
+            <hostedWebapp>${webappDirectory}</hostedWebapp>
+            <webappDirectory>${webappDirectory}</webappDirectory>
+    </configuration>
+  </plugin>
+
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+            <!--webXml>target/web.xml</webXml-->
+            <warSourceExcludes>.gwt-tmp/**</warSourceExcludes>
+            <webappDirectory>${webappDirectory}</webappDirectory>
+        </configuration>
+    </plugin>
+
+<plugin>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>tomcat-maven-plugin</artifactId>
+    <version>1.0-beta-1</version>
+    <dependencies>
+       <dependency>
+            <groupId>org.apache.derby</groupId>
+            <artifactId>derby</artifactId>
+            <version>10.4.2.0</version>
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
+    <configuration>
+        <configurationDir>${project.build.directory}/tomcat</configurationDir>
+        <warSourceDirectory>${webappDirectory}</warSourceDirectory>
+    </configuration>
+</plugin>
+
+<!-- 
+ <plugin>
+    <artifactId>maven-clean-plugin</artifactId>
+    <configuration>
+      <filesets>
+        <fileset>
+          <directory>${webappDirectory}</directory>
+          <includes />
+          <excludes />
+          <followSymlinks>false</followSymlinks>
+        </fileset>
+      </filesets>
+    </configuration>
+  </plugin>
+-->
+</plugins>
+
+
+<extensions>
+<extension>
+	<groupId>org.jvnet.wagon-svn</groupId>
+	<artifactId>wagon-svn</artifactId>
+	<version>1.8</version>	
+</extension>
+</extensions>  	
+
+</build>
+
+
+<distributionManagement>
+    <repository>
+        <id>google-project</id>
+        <url>svn:https://maven-gwt-archetypes.googlecode.com/svn/mavenrepo</url>
+    </repository>
+</distributionManagement>
+
+</project>
