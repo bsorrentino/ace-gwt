@@ -21,19 +21,12 @@ Use ACE Editor from GWT
 4. Include JS and add the RootPanel div in your Application.html
 
   <head>
-    <!--                                           	-->
-    <!-- ACE   									   	-->
-    <!--											-->
-    <!--                                           	-->
 	<script src="src/ace.js" type="text/javascript" charset="utf-8"></script>
 	<script src="src/theme-twilight.js" type="text/javascript" charset="utf-8"></script>
 	<script src="src/mode-javascript.js" type="text/javascript" charset="utf-8"></script>
   </head>
 
   <body>
-
-    <!-- OPTIONAL: include this if you want history support -->
-    <iframe src="javascript:''" id="__gwt_historyFrame" tabIndex='-1' style="position:absolute;width:0;height:0;border:0"></iframe>
 
 	<div id="toolbar"></div>
 	<div id="editor">
